@@ -1,4 +1,4 @@
-apply plugin: 'com.android.application'
+apply plugin: 'com.android.library'
 
 android {
     compileSdkVersion 28
@@ -6,7 +6,7 @@ android {
         minSdkVersion 19
         targetSdkVersion 28
         versionCode 1
-        versionName "1.0"
+        versionName "0.0.1"
     }
     buildTypes {
         release {
@@ -24,3 +24,18 @@ dependencies {
     api 'com.android.support:appcompat-v7:28.0.0'
     compileOnly fileTree(include: ['*.jar'], dir: 'libs')
 }
+
+//task to delete the old AAR
+task deleteOldAar(type: Delete) {
+//    delete 'build/release/UnnyNetAndroid.aar'
+}
+
+//task to export arr
+task exportAar(type: Copy) {
+    from('build/outputs/aar/')
+    into('build/release/')
+    include('app-release.aar')
+
+    rename('app-release.aar', 'UnnyNetAndroid_v' + android.defaultConfig.versionName + '.aar')
+}
+exportAar.dependsOn(deleteOldAar, build)
