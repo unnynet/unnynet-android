@@ -675,6 +675,7 @@ class WebViewDialog extends Dialog implements JSInterface.OnJSMessage {
         ViewGroup.LayoutParams webParams = new ViewGroup.LayoutParams(width, height);
         webViewContainer.setX(x);
         webViewContainer.setY(y);
+        webViewContainer.setBackgroundColor(Color.parseColor("#ff36393f"));
         addContentView(webViewContainer, webParams);
         webViewContainer.addView(webView);
 
@@ -693,7 +694,7 @@ class WebViewDialog extends Dialog implements JSInterface.OnJSMessage {
         closeBtn.setImageResource(R.drawable.closebtn);
         closeBtn.setBackgroundResource(0);
         closeBtn.setPadding(0, 0, 0, 0);
-        FrameLayout.LayoutParams btnParams = new FrameLayout.LayoutParams((int) (40 * density), (int) (40 * density));
+        FrameLayout.LayoutParams btnParams = new FrameLayout.LayoutParams((int) (25 * density), (int) (25 * density));
         btnParams.gravity = Gravity.END | Gravity.TOP;
         btnParams.setMargins(0, (int) (10 * density), (int) (10 * density), 0);
         closeBtn.setLayoutParams(btnParams);
