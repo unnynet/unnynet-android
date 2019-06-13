@@ -80,7 +80,7 @@ public interface UnnyNet {
     }
 
     interface OnPlayerAuthorizedListener {
-        void onPlayerAuthorized(String unnyId, String email, String name);
+        void onPlayerAuthorized(String unnyId, String name);
     }
 
     interface OnGameLoginRequestListener {

@@ -393,7 +393,7 @@ public class UnnyNetDefault implements UnnyNet {
                 int status = sharedPref.getInt(ExtStoragePermissionStatus, DEF_PERMISSION_STATUS);
                 setAttachmentsPermissionStatus(status);
                 if (onPlayerAuthorized != null)
-                    onPlayerAuthorized.onPlayerAuthorized(msg.Args.get("unny_id"), msg.Args.get("email"), msg.Args.get("name"));
+                    onPlayerAuthorized.onPlayerAuthorized(msg.Args.get("unny_id"), msg.Args.get("name"));
                 setDefaultChannel(defaultChannel);
                 break;
 
