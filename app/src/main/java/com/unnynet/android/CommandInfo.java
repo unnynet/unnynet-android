@@ -101,6 +101,7 @@ public class CommandInfo {
             case AuthorizeWithCredentials:
             case ForceLogout:
             case GetGuildInfo:
+            case AuthorizeAsGuest:
                 return getCommand() == cmd;
             default:
                 return false;

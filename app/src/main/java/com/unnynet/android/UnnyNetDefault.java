@@ -740,6 +740,11 @@ public class UnnyNetDefault implements UnnyNet {
         evaluateCodeInJavaScript(new CommandInfo(UnnynetCommand.Command.AuthorizeWithCredentials, code, false, doneCallback), true);
     }
 
+    public void authorizeAsGuest(String displayName, OnCompleteListener doneCallback) {
+        String code = String.format(UnnynetCommand.getCommand(UnnynetCommand.Command.AuthorizeAsGuest), displayName);
+        evaluateCodeInJavaScript(new CommandInfo(UnnynetCommand.Command.AuthorizeWithCredentials, code, false, doneCallback), true);
+    }
+
     public void forceLogout(OnCompleteListener doneCallback) {
         evaluateCommand(UnnynetCommand.Command.ForceLogout, false, doneCallback);
     }

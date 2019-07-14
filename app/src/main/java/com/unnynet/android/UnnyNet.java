@@ -51,6 +51,8 @@ public interface UnnyNet {
 
     void authorizeWithCredentials(String login, String password, String displayName, OnCompleteListener doneCallback);
 
+    void authorizeAsGuest(String displayName, OnCompleteListener doneCallback);
+
     void forceLogout(OnCompleteListener doneCallback);
 
     void getGuildInfo(boolean fullInfo, OnRequestCompleteListener doneCallback);

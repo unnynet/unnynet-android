@@ -24,6 +24,7 @@ class UnnynetCommand {
         SetConfig(81),
         SetDefaultChannel(82),
         AuthorizeWithCredentials(100),
+        AuthorizeAsGuest(101),
         ForceLogout(110),
         GetGuildInfo(120);
 
@@ -66,6 +67,7 @@ class UnnynetCommand {
         put(Command.SetConfig.value, "window.globalReactFunctions.apiSetConfig('%s')");
         put(Command.SetDefaultChannel.value, "window.globalReactFunctions.apiSetDefaultChannel('%s')");
         put(Command.AuthorizeWithCredentials.value, "window.globalReactFunctions.apiAuthWithCredentials('%s', '%s', '%s')");
+        put(Command.AuthorizeAsGuest.value, "window.globalReactFunctions.apiAuthAsGuest('%s')");
         put(Command.ForceLogout.value, "window.globalReactFunctions.apiForceLogout()");
         put(Command.GetGuildInfo.value, "window.globalReactFunctions.apiGetGuildInfo(<*id*>, %s)");
     }};

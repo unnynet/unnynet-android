@@ -6,7 +6,7 @@ android {
         minSdkVersion 19
         targetSdkVersion 28
         versionCode 1
-        versionName "0.0.1"
+        versionName "0.0.2"
     }
     buildTypes {
         release {
@@ -25,7 +25,6 @@ dependencies {
     compileOnly fileTree(include: ['*.jar'], dir: 'libs')
 }
 
-//task to delete the old AAR
 task deleteOldAar(type: Delete) {
 //    delete 'build/release/UnnyNetAndroid.aar'
 }
