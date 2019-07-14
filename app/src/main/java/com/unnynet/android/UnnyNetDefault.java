@@ -31,6 +31,7 @@ public class UnnyNetDefault implements UnnyNet {
     private String JSON_OPEN_WITH_ANIMATION = "open_animation";
     private String JSON_CLOSE_WITH_FADE = "close_fade";
     private String JSON_CLOSE_WITH_ANIMATION = "close_animation";
+    private String JSON_PUBLIC_KEY = "public_key";
     private int SEND_REQUEST_RETRY_DELAY = 1000;
     private int TASK_PERIOD = 100;
     private String ExtStoragePermissionStatus = "ExtStoragePermissionStatus";
@@ -49,6 +50,7 @@ public class UnnyNetDefault implements UnnyNet {
 
     private String gameId;
     private String defaultChannel = "general";
+    private String publicKey;
     boolean allowGuestMode = true;
     private boolean loginWithCredentials = false;
     private boolean openWithFade = false;
@@ -91,6 +93,9 @@ public class UnnyNetDefault implements UnnyNet {
                 if (json.contains(JSON_GUESTS_ALLOWED))
                     allowGuestMode = jsonObj.getBoolean(JSON_GUESTS_ALLOWED);
 
+                if (json.contains(JSON_PUBLIC_KEY))
+                    publicKey = jsonObj.getString(JSON_PUBLIC_KEY);
+
                 if (json.contains(JSON_GAME_LOGIN))
                     loginWithCredentials = jsonObj.getBoolean(JSON_GAME_LOGIN);
 
@@ -123,6 +128,8 @@ public class UnnyNetDefault implements UnnyNet {
         prms.add("version=" + UnnyNetPluginVersion);
         if (loginWithCredentials)
             prms.add("game_login=1");
+        if(publicKey != null && !publicKey.isEmpty())
+            prms.add("public_key=" + publicKey);
 
         String addPath = "/#/plugin/" + gameId + "?";
 
@@ -144,7 +151,7 @@ public class UnnyNetDefault implements UnnyNet {
         Logger.getInstance().setLevel(2);
     }
 
-    private void initScheduler(){
+    private void initScheduler() {
         exec = new ScheduledThreadPoolExecutor(1);
         queueCheckerTask = exec.scheduleAtFixedRate(new QueueChecker(), 0, TASK_PERIOD, TimeUnit.MILLISECONDS);
     }
