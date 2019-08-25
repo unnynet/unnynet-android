@@ -292,8 +292,8 @@ class WebViewDialog extends Dialog implements JSInterface.OnJSMessage {
         window.setLayout(size.x, size.y);
 
         ViewGroup.LayoutParams p = webViewContainer.getLayoutParams();
-        p.width = ViewGroup.LayoutParams.MATCH_PARENT;
-        p.height = ViewGroup.LayoutParams.MATCH_PARENT;
+        p.width = this.width;
+        p.height = this.height;
         webViewContainer.setLayoutParams(p);
     }
 
@@ -632,6 +632,13 @@ class WebViewDialog extends Dialog implements JSInterface.OnJSMessage {
         window.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE);
         window.setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         window.setFlags(WindowManager.LayoutParams.FLAG_HARDWARE_ACCELERATED, WindowManager.LayoutParams.FLAG_HARDWARE_ACCELERATED);
+
+        if (Build.VERSION.SDK_INT >= 28) {
+            int mode = this.activity.getWindow().getAttributes().layoutInDisplayCutoutMode;
+            WindowManager.LayoutParams params = getWindow().getAttributes();
+            params.layoutInDisplayCutoutMode = mode;
+            getWindow().setAttributes(params);
+        }
     }
 
     private void addWebViewContent() {
