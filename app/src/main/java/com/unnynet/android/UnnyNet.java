@@ -31,6 +31,8 @@ public interface UnnyNet {
 
     void openLeaderboards(OnCompleteListener doneCallback);
 
+    void setCloseButtonVisible(final boolean visible);
+
     void openAchievements(OnCompleteListener doneCallback);
 
     void openFriends(OnCompleteListener doneCallback);

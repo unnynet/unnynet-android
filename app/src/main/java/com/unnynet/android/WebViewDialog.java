@@ -64,6 +64,7 @@ class WebViewDialog extends Dialog implements JSInterface.OnJSMessage {
     private boolean isLoading;
     private Activity activity;
     private ProgressDialog spinner;
+    private ImageButton closeBtn;
     private String spinnerText = "Loading...";
 
     // Origin and Size
@@ -77,6 +78,7 @@ class WebViewDialog extends Dialog implements JSInterface.OnJSMessage {
 
     private boolean animating;
     private boolean backButtonEnabled = true;
+    private boolean closeButtonVisible = true;
 
     private float webViewAlpha = 1.0f;
 
@@ -690,7 +692,7 @@ class WebViewDialog extends Dialog implements JSInterface.OnJSMessage {
 
         LayoutInflater li = (LayoutInflater) getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 
-        ImageButton closeBtn = new ImageButton(getContext());
+        closeBtn = new ImageButton(getContext());
         closeBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -698,6 +700,7 @@ class WebViewDialog extends Dialog implements JSInterface.OnJSMessage {
             }
         });
         closeBtn.setScaleType(ImageView.ScaleType.FIT_END);
+        closeBtn.setVisibility(this.closeButtonVisible ? View.VISIBLE : View.GONE);
         closeBtn.setImageResource(R.drawable.closebtn);
         closeBtn.setBackgroundResource(0);
         closeBtn.setPadding(0, 0, 0, 0);
@@ -809,6 +812,12 @@ class WebViewDialog extends Dialog implements JSInterface.OnJSMessage {
 
     boolean isShowSpinnerWhileLoading() {
         return showSpinnerWhileLoading;
+    }
+
+    void setCloseButtonVisible(final boolean visible) {
+        this.closeButtonVisible = visible;
+        if(this.closeBtn != null)
+            closeBtn.setVisibility(visible ? View.VISIBLE : View.GONE);
     }
 
     void setShowSpinnerWhileLoading(boolean showSpinnerWhileLoading) {

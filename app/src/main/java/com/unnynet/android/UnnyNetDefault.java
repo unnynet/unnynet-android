@@ -566,6 +566,18 @@ public class UnnyNetDefault implements UnnyNet {
     }
 
     @Override
+    public void setCloseButtonVisible(final boolean visible) {
+        Logger.getInstance().info("Set Close Button Visible");
+
+        runSafelyOnUiThread(new DialogRunnable(dialogName) {
+            @Override
+            public void runWith(WebViewDialog dialog) {
+                dialog.setCloseButtonVisible(visible);
+            }
+        });
+    }
+
+    @Override
     public void show() {
         Logger.getInstance().info("Interface show");
 
